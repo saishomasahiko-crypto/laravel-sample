@@ -40,9 +40,9 @@ class PostController extends Controller
         $validated['user_id'] = auth()->id();
 
         // ここで1回だけ create() する
-        Post::create($validated);
+        $post = Post::create($validated);
 
-        return redirect()->route('post.index')->with('message', '保存しました');
+        return redirect()->route('post.show', $post)->with('message', '保存しました');
     }
 
     /**
