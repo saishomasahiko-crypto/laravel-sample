@@ -24011,6 +24011,13 @@ namespace Illuminate\Testing {
             }
     }
 
+namespace App\Livewire {
+    /**
+     */
+    class UserList extends \Livewire\Component {
+            }
+    }
+
 namespace App\Livewire\Settings {
     /**
      */

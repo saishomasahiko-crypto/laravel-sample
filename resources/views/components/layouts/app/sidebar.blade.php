@@ -27,6 +27,13 @@
                     <flux:navlist.item icon="pencil-square" :href="route('post.create')" :current="request()->routeIs('post.create')" wire:navigate>
                         新規作成
                     </flux:navlist.item>
+
+                    @can('admin')
+                    <flux:navlist.item icon="users" :href="route('users.list')" :current="request()->routeIs('users.list')" wire:navigate>
+                    ユーザー一覧
+                    </flux:navlist.item>
+                    @endcan
+
                 </flux:navlist.group>
             </flux:navlist>
             <!-- ここまで -->
@@ -44,6 +51,7 @@
             </flux:navlist>
 
             <!-- Desktop User Menu -->
+            @auth
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
                 <flux:profile
                     :name="auth()->user()->name"
@@ -87,6 +95,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
@@ -94,7 +103,7 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />
-
+            @auth
             <flux:dropdown position="top" align="end">
                 <flux:profile
                     :initials="auth()->user()->initials()"
@@ -137,6 +146,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:header>
 
         {{ $slot }}
